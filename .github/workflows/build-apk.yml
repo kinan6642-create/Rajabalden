@@ -1,0 +1,41 @@
+name: بناء تطبيق أندرويد (APK)
+
+# يعمل تلقائيًا عند رفع أي تعديل على الفرع main، ويمكن أيضًا تشغيله يدويًا
+# من تبويب Actions بالضغط على "Run workflow".
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch: {}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: استنساخ المشروع
+        uses: actions/checkout@v4
+
+      - name: تثبيت جافا (JDK 17)
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: تثبيت أدوات أندرويد (Android SDK)
+        uses: android-actions/setup-android@v3
+
+      - name: قبول تراخيص Android SDK
+        run: yes | sdkmanager --licenses || true
+
+      - name: إعداد Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: "8.7"
+
+      - name: بناء ملف APK (Debug - جاهز للتثبيت المباشر)
+        run: gradle assembleDebug --no-daemon
+
+      - name: رفع ملف APK كناتج قابل للتحميل
+        uses: actions/upload-artifact@v4
+        with:
+          name: erp-app-debug-apk
+          path: app/build/outputs/apk/debug/app-debug.apk
