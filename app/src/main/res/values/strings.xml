@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">منصة ERP الموحدة</string>
+    <string name="menu_change_server">تغيير رابط الخادم</string>
+    <string name="menu_refresh">تحديث</string>
+    <string name="dialog_server_title">رابط خادم البرنامج</string>
+    <string name="dialog_server_hint">مثال: http://192.168.1.5:4000</string>
+    <string name="dialog_save">حفظ واتصال</string>
+    <string name="dialog_cancel">إلغاء</string>
+    <string name="error_no_connection">تعذّر الاتصال بالخادم. تأكد من الرابط ومن أن الخادم يعمل، ثم أعد المحاولة.</string>
+    <string name="retry">إعادة المحاولة</string>
+    <string name="first_run_message">أدخل رابط خادم البرنامج للمرة الأولى (تجده عند تشغيل البرنامج على اللابتوب، أو رابط الخادم السحابي إن وُجد).</string>
+</resources>
